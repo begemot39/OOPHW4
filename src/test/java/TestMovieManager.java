@@ -45,10 +45,10 @@ public class TestMovieManager {
     }
 
     @Test // Получить список фильмов, настройка по умолчанию.
-    public void testGetAllMoviesDefault() {
+    public void testGetAllDefault() {
 
         String[] exp = new String[0];
-        String[] act = testMovieManager.getAllMovies();
+        String[] act = testMovieManager.findAll();
 
         Assertions.assertArrayEquals(exp, act);
     }
@@ -58,7 +58,7 @@ public class TestMovieManager {
 
         testMovieManager.addNewMovie(testName);
         String[] exp = {"Матрица"};
-        String[] act = testMovieManager.getAllMovies();
+        String[] act = testMovieManager.findAll();
 
         Assertions.assertArrayEquals(exp, act);
     }
@@ -75,13 +75,13 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
         String[] exp = {"Матрица","Матрица1","Матрица2","Матрица3","Матрица4","Матрица5","Матрица6"};
-        String[] act = testMovieManager.getAllMovies();
+        String[] act = testMovieManager.findAll();
 
         Assertions.assertArrayEquals(exp, act);
     }
 
-    @Test // Получить реверсивный список, настройка пользователя, максимальный валидный счётчик.
-    public void testGetReverseMovieUserValidMaxCount() {
+    @Test
+    public void testFindLastUserMaxValidCount() { // Получить реверсивный список, настройка пользователя, максимальный валидный счётчик.
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -92,14 +92,14 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
         String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2","Матрица1","Матрица"};
-        String[] act = testMovieManager.getReverseMovieUser(testMovieManager.getAllMovies(), 7);
+        String[] act = testMovieManager.findLast(7 );
 
         Assertions.assertArrayEquals( exp, act );
 
     }
 
-    @Test // Получить реверсивный список, настройка пользователя, счётчик 1.
-    public void testGetReverseMovieUserOneCount() {
+    @Test
+    public void testFindLastUserMinValidCount() { // Получить реверсивный список, настройка пользователя, минимальный валидный счётчик.
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -110,14 +110,13 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
         String[] exp = {"Матрица6"};
-        String[] act = testMovieManager.getReverseMovieUser(testMovieManager.getAllMovies(), 1);
+        String[] act = testMovieManager.findLast(1 );
 
         Assertions.assertArrayEquals( exp, act );
-
     }
 
-    @Test // Получить реверсивный список, настройка пользователя, невалидный отрицательный счётчик.
-    public void testGetReverseMovieUserNegativeCount() {
+    @Test
+    public void testFindLastUserOverMaxCountByOne() { // Реверсивный список, настройка пользователя, невалидный счётик, выше максимума на 1.
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -128,14 +127,13 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
         String[] exp = null;
-        String[] act = testMovieManager.getReverseMovieUser(testMovieManager.getAllMovies(), -7);
+        String[] act = testMovieManager.findLast(8 );
 
         Assertions.assertArrayEquals( exp, act );
-
     }
 
-    @Test // Получить реверсивный список, настройка пользователя, невалидный  счётчик, больше размера массива фильмов.
-    public void testGetReverseMovieUserBiggerInvalidCount() {
+    @Test
+    public void testFindLastUserCountZero() { // Реверсивный список, настройка пользователя, невалидный счётик,  0.
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -146,15 +144,13 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
         String[] exp = null;
-        String[] act = testMovieManager.getReverseMovieUser(testMovieManager.getAllMovies(), 17);
+        String[] act = testMovieManager.findLast(0 );
 
         Assertions.assertArrayEquals( exp, act );
-
     }
 
-
-    @Test // Получить реверсивный список, настройка по умолчанию.
-    public void testGetReverseMovieDefault() {
+    @Test
+    public void testFindLastUserCountBelowZero() { // Реверсивный список, настройка пользователя, невалидный счётик, меньше нуля.
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -164,11 +160,29 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3", "Матрица2"};
-        String[] act = testMovieManager.getReverseMovieDefault( testMovieManager.getAllMovies());
+        String[] exp = null;
+        String[] act = testMovieManager.findLast(-1 );
+
+        Assertions.assertArrayEquals( exp, act );
+    }
+
+    @Test
+    public void testFindLastDefault() { // Получить реверсивный список, настройка по умолчанию.
+
+        testMovieManager.addNewMovie(testName);
+        testMovieManager.addNewMovie(testName1);
+        testMovieManager.addNewMovie(testName2);
+        testMovieManager.addNewMovie(testName3);
+        testMovieManager.addNewMovie(testName4);
+        testMovieManager.addNewMovie(testName5);
+        testMovieManager.addNewMovie(testName6);
+
+        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2"};
+        String[] act = testMovieManager.findLast();
 
         Assertions.assertArrayEquals( exp, act );
 
     }
+
 }
 

@@ -21,7 +21,7 @@ public class MovieManager {
         return moviesCount;
     }
 
-    public String[] getAllMovies() { // Получить список фильмов.
+    public String[] findAll() { // Получить список фильмов.
         return moviesList;
     }
 
@@ -37,12 +37,13 @@ public class MovieManager {
 
     }
 
-    public String[] getReverseMovieUser(String[] userMovieList, int userMovieCount) { // Вывести реверсивный список фильмов, настройки пользователя.
-        if (userMovieCount > 0 && userMovieCount <= userMovieList.length) {
+    public String[] findLast( int userMovieCount ) { // Вывести реверсивный список фильмов, настройки пользователя
+
+        if (userMovieCount > 0 && userMovieCount <= moviesList.length) {
             String[] reverseMovieList = new String[userMovieCount];
 
             for (int i = 0; i < userMovieCount; i++) {
-                reverseMovieList[i] = userMovieList[userMovieList.length - 1 - i];
+                reverseMovieList[i] = moviesList[moviesList.length - 1 - i];
             }
             return reverseMovieList;
         } else {
@@ -50,11 +51,11 @@ public class MovieManager {
         }
     }
 
-    public String[] getReverseMovieDefault(String[] userMovieList) { // Вывести реверсивный список фильмов, настройки по умолчанию.
-        this.moviesCount = 5;
+    public String[] findLast() { // Вывести реверсивный список фильмов, настройки по умолчанию.
+//        MovieManager manager = new MovieManager();
         String[] reverseMovieList = new String[moviesCount];
         for (int i = 0; i < moviesCount; i++) {
-            reverseMovieList[i] = userMovieList[userMovieList.length - 1 - i];
+            reverseMovieList[i] = moviesList[moviesList.length - 1 - i];
         }
         return reverseMovieList;
     }

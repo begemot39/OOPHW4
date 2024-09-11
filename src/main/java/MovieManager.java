@@ -2,7 +2,7 @@ public class MovieManager {
     private String[] moviesList; // Массив фильмов.
     private int moviesCount; // Счётчик добавленных фильмов.
 
-   // Конструкторы
+    // Конструкторы
     public MovieManager(int userMoviesCount) { // Задать пользовательский пул фильмов
         if (userMoviesCount > 0) {
             this.moviesCount = userMoviesCount;
@@ -42,20 +42,19 @@ public class MovieManager {
 
         int movCount = moviesList.length; // Фактический список фильмов
         int userMovCount = moviesCount; // Список фильмов пользователя.
-        String[] reverseMovieList = new String[moviesCount];
 
-        if ( userMovCount > movCount ) {
-            return null;
+        if (userMovCount > movCount) {
+            userMovCount = movCount;
         }
 
-        for (int i = 0; i < moviesCount; i++) {
-            reverseMovieList[i] = moviesList[moviesList.length - 1 - i];
+        String[] reverseMovieList = new String[userMovCount];
+
+        for (int i = 0; i < userMovCount; i++) {
+            reverseMovieList[i] = moviesList[movCount - 1 - i];
 
         }
 
         return reverseMovieList;
 
     }
-
-
 }

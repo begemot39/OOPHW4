@@ -16,7 +16,6 @@ public class TestMovieManager {
     MovieManager testMovieManager = new MovieManager();
 
 
-
     @Test // Получить счётчик фильмов, настройка по умолчанию.
     public void testGetMovieCountDefault() {
 
@@ -76,7 +75,7 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица","Матрица1","Матрица2","Матрица3","Матрица4","Матрица5","Матрица6"};
+        String[] exp = {"Матрица", "Матрица1", "Матрица2", "Матрица3", "Матрица4", "Матрица5", "Матрица6"};
         String[] act = testMovieManager.findAll();
 
         Assertions.assertArrayEquals(exp, act);
@@ -84,7 +83,7 @@ public class TestMovieManager {
 
     @Test
     public void testFindLastUserMaxValidCount() { // Получить реверсивный список, настройка пользователя, максимальный валидный счётчик.
-        MovieManager testMovieManager = new MovieManager( 7 );
+        MovieManager testMovieManager = new MovieManager(7);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -94,15 +93,15 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2", "Матрица1", "Матрица"};
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4", "Матрица3", "Матрица2", "Матрица1", "Матрица"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
     public void testFindLastUserMinValidCount() { // Получить реверсивный список, настройка пользователя, минимальный валидный счётчик.
-        MovieManager testMovieManager = new MovieManager( 1 );
+        MovieManager testMovieManager = new MovieManager(1);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -115,12 +114,12 @@ public class TestMovieManager {
         String[] exp = {"Матрица6"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
-    public void testFindLastUserRandomValidCount() { // Получить реверсивный список, настройка пользователя, случайны валидный счётчик.
-        MovieManager testMovieManager = new MovieManager( 3 );
+    public void testFindLastUserRandomValidCount() { // Получить реверсивный список, настройка пользователя, случайный валидный счётчик.
+        MovieManager testMovieManager = new MovieManager(3);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -130,16 +129,16 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4"};
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
     public void testFindLastUserOverMaxCountByOne() { // Реверсивный список, настройка пользователя, невалидный счётик, выше максимума на 1.
 
-        MovieManager testMovieManager = new MovieManager( 8 );
+        MovieManager testMovieManager = new MovieManager(8);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -149,15 +148,15 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = null;
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4", "Матрица3", "Матрица2", "Матрица1", "Матрица"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
     public void testFindLastUserCountZero() { // Реверсивный список, настройка пользователя, невалидный счётик,  0.
-        MovieManager testMovieManager = new MovieManager( 0 );
+        MovieManager testMovieManager = new MovieManager(0);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -168,15 +167,15 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName6);
 
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2"};
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4", "Матрица3", "Матрица2"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
     public void testFindLastUserCountBelowZero() { // Реверсивный список, настройка пользователя, невалидный счётик, меньше нуля.
-        MovieManager testMovieManager = new MovieManager( -1 );
+        MovieManager testMovieManager = new MovieManager(-1);
 
         testMovieManager.addNewMovie(testName);
         testMovieManager.addNewMovie(testName1);
@@ -186,10 +185,10 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2"};
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4", "Матрица3", "Матрица2"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
     }
 
     @Test
@@ -203,10 +202,10 @@ public class TestMovieManager {
         testMovieManager.addNewMovie(testName5);
         testMovieManager.addNewMovie(testName6);
 
-        String[] exp = {"Матрица6","Матрица5","Матрица4","Матрица3","Матрица2"};
+        String[] exp = {"Матрица6", "Матрица5", "Матрица4", "Матрица3", "Матрица2"};
         String[] act = testMovieManager.findLast();
 
-        Assertions.assertArrayEquals( exp, act );
+        Assertions.assertArrayEquals(exp, act);
 
     }
 

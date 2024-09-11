@@ -9,6 +9,7 @@ public class MovieManager {
         } else {
             this.moviesCount = 5;
         }
+        this.moviesList = new String[0];
     }
 
     public MovieManager() { // Задать размер пула фильмов по умолчанию.
@@ -37,26 +38,24 @@ public class MovieManager {
 
     }
 
-    public String[] findLast( int userMovieCount ) { // Вывести реверсивный список фильмов, настройки пользователя
+    public String[] findLast() { // Вывести реверсивный список фильмов, настройки по умолчанию.
 
-        if (userMovieCount > 0 && userMovieCount <= moviesList.length) {
-            String[] reverseMovieList = new String[userMovieCount];
+        int movCount = moviesList.length; // Фактический список фильмов
+        int userMovCount = moviesCount; // Список фильмов пользователя.
+        String[] reverseMovieList = new String[moviesCount];
 
-            for (int i = 0; i < userMovieCount; i++) {
-                reverseMovieList[i] = moviesList[moviesList.length - 1 - i];
-            }
-            return reverseMovieList;
-        } else {
+        if ( userMovCount > movCount ) {
             return null;
         }
-    }
 
-    public String[] findLast() { // Вывести реверсивный список фильмов, настройки по умолчанию.
-//        MovieManager manager = new MovieManager();
-        String[] reverseMovieList = new String[moviesCount];
         for (int i = 0; i < moviesCount; i++) {
             reverseMovieList[i] = moviesList[moviesList.length - 1 - i];
+
         }
+
         return reverseMovieList;
+
     }
+
+
 }
